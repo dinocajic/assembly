@@ -1,22 +1,18 @@
 /* Dino Cajic
    Computer Organization and Programming
-   Monday and Wednesday: 3:00pm to 4:15pm
    
-   Assignment 4
-   Due: Friday November 11, 2016 at 11:59pm
-
    The purpose of this program is to translate the following C code into assembly langauge
    program. All variables are to be allocated space on the stack without using macros. In the 
    program you are to use only registers %o0 and %o1. All variables are to be accessed from 
-   the stacksuch that at any time during program execution the latest values of the variable
+   the stack such that at any time during program execution the latest values of the variable
    are located on the stack. You are to execute the statements in the order given. Do not try
    to optimize your code (i.e. do not remove nops)
 
                 Bytes?   Unaligned    Aligned
    char  ca; // 1 Byte   0-1   = -1   -1  & -1 = -1
    short sb; // 2 Bytes  -1-2  = -3   -3  & -2 = -4 
-   int   ic; // 4 Bytes  -3-4  = -7   -7  & -4 = -8
-   char  cd; // 1 Byte   -7-1  = -8   -8  & -1 = -9
+   int   ic; // 4 Bytes  -4-4  = -8   -8  & -4 = -8
+   char  cd; // 1 Byte   -8-1  = -9   -8  & -1 = -9
    short se; // 2 Bytes  -9-2  = -11  -11 & -2 = -12 
    int   ig; // 4 Bytes  -12-4 = -16  -16 & -4 = -16
    
@@ -31,7 +27,6 @@
    Use correct versions of load/store commands for data of different sizes.
    Use correct versions of examine command of gdb to verify results (ex: x/db for printing a 
    byte memory variable in signed decimal form)
-
 */
 
 .global main

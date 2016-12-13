@@ -1,9 +1,5 @@
 /* Dino Cajic
    Computer Organization and Programming
-   Monday and Wednesday: 3:00pm to 4:15pm
-   
-   Assignment 3
-   Due: Friday October 21st, 2016 at 11:59pm
 
    The purpose of this program is to test if the flag 0x10 is set in the register %l0.
    - If it's set, then multiply the content of %l0 by 2 using the appropriate shift instruction and exit immediately

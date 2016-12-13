@@ -8,7 +8,7 @@
 .global main
 
 main:
-	    save %sp, -96, %sp	    !Provides space to save registers for GDB
+	save %sp, -96, %sp      !Provides space to save registers for GDB
 
         mov -1000,  %l1         !Initializes the max to %l1
         clr %l2                 !Initializes the storage of the result to 0
@@ -40,8 +40,8 @@ test:
         ble loop                !If x is less than or equal to 8, branch back to the loop
         nop
 
-	    mov 1, %g1		        !Exit request
-	    ta 0			        !Trap to system
+        mov 1, %g1		!Exit request
+	ta 0		        !Trap to system
 max:
         mov %l2, %l1            !Moves the content of %l2 to %l1
         ba test

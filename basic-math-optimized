@@ -1,9 +1,5 @@
 /* Dino Cajic
    Computer Organization and Programming
-   Monday and Wednesday: 3:00pm to 4:15pm
-   
-   Assignment 2
-   Due: Thursday September 29th, 2016 at 11:59pm
 
    The purpose of this program is to execute y = 5x^2 + 6x + 17 where x = 3
    To begin, we'll break this up slightly:

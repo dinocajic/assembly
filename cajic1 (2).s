@@ -1,0 +1,71 @@
+/* Dino Cajic
+   Computer Organization and Programming
+   Monday and Wednesday: 3:00pm to 4:15pm
+   
+   Assignment 4
+   Due: Friday November 11, 2016 at 11:59pm
+
+   The purpose of this program is to translate the following C code into assembly langauge
+   program. All variables are to be allocated space on the stack without using macros. In the 
+   program you are to use only registers %o0 and %o1. All variables are to be accessed from 
+   the stacksuch that at any time during program execution the latest values of the variable
+   are located on the stack. You are to execute the statements in the order given. Do not try
+   to optimize your code (i.e. do not remove nops)
+
+                Bytes?   Unaligned    Aligned
+   char  ca; // 1 Byte   0-1   = -1   -1  & -1 = -1
+   short sb; // 2 Bytes  -1-2  = -3   -3  & -2 = -4 
+   int   ic; // 4 Bytes  -3-4  = -7   -7  & -4 = -8
+   char  cd; // 1 Byte   -7-1  = -8   -8  & -1 = -9
+   short se; // 2 Bytes  -9-2  = -11  -11 & -2 = -12 
+   int   ig; // 4 Bytes  -12-4 = -16  -16 & -4 = -16
+   
+   ca = 17;
+   cd = ca + 23;
+   ic = -63 + ca;
+   ig = ic + cd;
+   sb = ic / ca;
+   se = cd * sb + ic;
+
+   Run your progam with gdb to verify the value of uploaded variables after each calcuation.
+   Use correct versions of load/store commands for data of different sizes.
+   Use correct versions of examine command of gdb to verify results (ex: x/db for printing a 
+   byte memory variable in signed decimal form)
+
+*/
+
+.global main
+
+main:
+	save %sp, -96 + -14 & -4, %sp	!Save the necessary space + extra for stack and align by 4
+
+        mov 17, %o0                     !ca = 17
+        stb %o0, [%fp + -1]             
+
+        add %o0, 23, %o0                !cd = ca + 23
+        stb %o0, [%fp + -9]             !cd = 17 + 23
+                                        !cd = 40
+                                       
+        ldsb [%fp + -1], %o0            !ic = -63 + ca
+        add %o0, -63, %o0               !ic = -63 + 17
+        st %o0, [%fp + -8]              !ic = -46
+
+        ldsb [%fp - 9], %o1             !ig = ic + cd
+        add %o0, %o1, %o0               !ig = -46 + 40
+        st %o0, [%fp + -16]             !ig = -6
+
+        ld [%fp - 8], %o0               !sb = ic / ca
+        ldsb [%fp - 1], %o1             !sb = -46 / 17
+        call .div                       !sb = -2
+        nop
+        sth %o0, [%fp - 4]
+
+        ldsb [%fp - 9], %o1             !se = cd * sb + ic
+        call .mul                       !se = 40 * -2
+        nop                             !se = -80 + -46
+        ld [%fp - 8], %o1               !se = -126
+        add %o0, %o1, %o0
+        stsh %o0, [%fp - 12]
+
+        mov 1, %g1
+        ta 0

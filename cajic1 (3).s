@@ -1,12 +1,5 @@
 /* Dino Cajic
    Computer Organization and Programming
-   Monday and Wednesday: 3:00pm to 4:15pm
-
-   Assignment 5
-   Due: Friday December 2, 2016 at 11:59pm
-
-   The purpose of this program is to learn to write subroutines, to represent variables/arguments
-   in the stack, to lead and store data from and into the stack and the main memory.
 
    Translate the following three subroutines into assembly language:
 
@@ -54,6 +47,9 @@ main:
         nop
 
         sub %sp, -1 * 4 & -8, %sp !Subtract the added space for parameter
+        
+        mov 1, %g1
+        ta 0
 
 .global fn
 

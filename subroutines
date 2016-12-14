@@ -29,21 +29,21 @@
 .global main
 
 main:
-        save %sp, -92 & -8, %sp   !Save the necessary space and align by 8
+        save %sp, -92 & -8, %sp     !Save the necessary space and align by 8
 
         add %sp, (-1 * 4) & -8, %sp !Add additional space to subroutine for the extra parameter
 
-        mov 5, %o0                !Place last parameter in register %o0
-        st %o0, [%sp + 92]        !Store the last parameter into memory
+        mov 5, %o0                  !Place last parameter in register %o0
+        st %o0, [%sp + 92]          !Store the last parameter into memory
 
-        mov 6, %o5                !Move parameter 6 into %o5
-        mov 8, %o4                !Move parameter 5 into %o4
-        mov 4, %o3                !Move parameter 4 into %o3
-        mov 2, %o2                !Move parameter 3 into %o2
-        mov 3, %o1                !Move parameter 2 into %o1
-        mov 1, %o0                !Move parameter 1 into %o0
+        mov 6, %o5                  !Move parameter 6 into %o5
+        mov 8, %o4                  !Move parameter 5 into %o4
+        mov 4, %o3                  !Move parameter 4 into %o3
+        mov 2, %o2                  !Move parameter 3 into %o2
+        mov 3, %o1                  !Move parameter 2 into %o1
+        mov 1, %o0                  !Move parameter 1 into %o0
 
-        call fn                   !Call subroutine fn and pass arguments to it
+        call fn                     !Call subroutine fn and pass arguments to it
         nop
 
         sub %sp, (-1 * 4) & -8, %sp !Subtract the added space for parameter

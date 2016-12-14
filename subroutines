@@ -31,7 +31,7 @@
 main:
         save %sp, -92 & -8, %sp   !Save the necessary space and align by 8
 
-        add %sp, -1 * 4 * -8, %sp !Add additional space to subroutine for the extra parameter
+        add %sp, (-1 * 4) & -8, %sp !Add additional space to subroutine for the extra parameter
 
         mov 5, %o0                !Place last parameter in register %o0
         st %o0, [%sp + 92]        !Store the last parameter into memory
@@ -46,7 +46,7 @@ main:
         call fn                   !Call subroutine fn and pass arguments to it
         nop
 
-        sub %sp, -1 * 4 & -8, %sp !Subtract the added space for parameter
+        sub %sp, (-1 * 4) & -8, %sp !Subtract the added space for parameter
         
         mov 1, %g1
         ta 0
